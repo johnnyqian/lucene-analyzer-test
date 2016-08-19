@@ -17,12 +17,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by qianjo on 8/17/2016.
+ * Created by Johnny Qian on 8/17/2016.
  */
+
 public class AnalyzerTest {
-    String str = new String("马云和阿里巴巴都很牛。居然之家与欧特克之间有着战略合作。长春市长春药店。乒乓球拍卖啦。薄熙来到重庆。周杰轮周杰伦，范伟骑范玮琪。" +
-            "Autodesk builds software that helps people imagine, design, and create a better world.");
-    Reader input = new StringReader(str);
+    private String str = "马云和阿里巴巴都很牛。居然之家与欧特克之间有着战略合作。长春市长春药店。乒乓球拍卖啦。" +
+            "薄熙来到重庆。周杰轮周杰伦，范伟骑范玮琪。" +
+            "Autodesk builds software that helps people imagine, design, and create a better world.";
+    private Reader input = new StringReader(str);
 
     @Test
     public void testStandardTokenizer() {
@@ -58,7 +60,7 @@ public class AnalyzerTest {
 
     private void testTokenizer(TokenStream tokenStream) {
         try {
-            List<String> termList = new ArrayList<String>();
+            List<String> termList = new ArrayList<>();
 
             tokenStream.reset();
             while(tokenStream.incrementToken()){
