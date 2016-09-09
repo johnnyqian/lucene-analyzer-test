@@ -6,6 +6,7 @@ import org.apache.lucene.analysis.Tokenizer;
 import org.apache.lucene.analysis.cjk.CJKAnalyzer;
 import org.apache.lucene.analysis.cn.smart.HMMChineseTokenizer;
 import org.apache.lucene.analysis.cn.smart.SmartChineseAnalyzer;
+import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.analysis.standard.StandardTokenizer;
 import org.apache.lucene.analysis.tokenattributes.CharTermAttribute;
 import org.junit.Test;
@@ -34,6 +35,20 @@ public class AnalyzerTest {
         testTokenizer(tokenizer);
     }
 
+    /*
+    * StandardAnalyzer 相比 StandardTokenizer，增加了去除停顿词（that, and, a）以及小写转换（Autodesk -> autodesk），是一元分词
+    * */
+    @Test
+    public void testStandardAnalyzer() {
+        Analyzer analyzer = new StandardAnalyzer();
+        TokenStream tokenStream = analyzer.tokenStream("", input);
+
+        testTokenizer(tokenStream);
+    }
+
+    /*
+    * CJKAnalyzer 使用的tokenizer也是StandardTokenizer，是二元分词
+    * */
     @Test
     public void testCJKAnalyzer() {
         Analyzer analyzer = new CJKAnalyzer();
